@@ -10,13 +10,9 @@ import {
   stateLength
 } from './features/lengthControl/lengthControlSlice';
 import { Timer } from './features/timer/Timer';
-import {
-  stateTimer 
-} from './features/timer/timerSlice';
 
 export const App = () => {
   const length = useSelector(stateLength);
-  const timer = useSelector(stateTimer);
 
   return(
     <>
