@@ -1,12 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
+import lengthReducer from '../features/lengthControl/lengthControlSlice';
 
 export const store = configureStore({
   reducer: {
-    length: state => {
-      return {
-        break: 5,
-        session: 25
-      }
-    }
+    length: lengthReducer,
   }
 });
