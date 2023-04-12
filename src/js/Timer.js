@@ -1,12 +1,6 @@
 import React from 'react';
-import {
-  useSelector,
-  useDispatch
-} from 'react-redux';
-import {
-  stateTimer,
-  countdown,
-} from './timerSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { stateTimer, countdown } from './app/timerSlice';
 
 let timer; 
 
@@ -32,8 +26,8 @@ export const Timer = props => {
         <div id="start_stop" onClick={() => startStopDispatcher(state, dispatch)}>Start-Stop</div>
         <div id="reset" onClick={() => {
           if (timer) { clearInterval(timer) };
-          dispatch(props.reset())}
-        }>
+          dispatch(props.reset());
+        }}>
           Reset
         </div>
       </div>

@@ -1,18 +1,18 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { LengthControl } from './features/lengthControl/LengthControl';
 import {
   breakInc,
   breakDec,
   sessionInc,
   sessionDec,
   reset,
-  stateLength
-} from './features/lengthControl/lengthControlSlice';
-import { Timer } from './features/timer/Timer';
+  stateTimer
+} from './app/timerSlice';
+import { LengthControl } from './LengthControl';
+import { Timer } from './Timer';
 
 export const App = () => {
-  const length = useSelector(stateLength);
+  const length = useSelector(stateTimer);
 
   return(
     <>

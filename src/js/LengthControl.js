@@ -2,7 +2,6 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 
 export const LengthControl = props => {
-  // TODO: controls for increment and decrement
   const labelId = props.name + '-label';
   const incrementId = props.name + '-increment';
   const decrementId = props.name + '-decrement';
