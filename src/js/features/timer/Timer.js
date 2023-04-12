@@ -30,7 +30,12 @@ export const Timer = props => {
       <div id="time-left">{state.remaining}</div>
       <div className="controls" id="timer-controls">
         <div id="start_stop" onClick={() => startStopDispatcher(state, dispatch)}>Start-Stop</div>
-        <div id="reset" onClick={() => dispatch(props.reset())}>Reset</div>
+        <div id="reset" onClick={() => {
+          if (timer) { clearInterval(timer) };
+          dispatch(props.reset())}
+        }>
+          Reset
+        </div>
       </div>
     </>
   )
