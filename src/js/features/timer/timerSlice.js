@@ -11,7 +11,14 @@ export const timerSlice = createSlice({
       const sec = Number(state.remaining.split(':')[1]);
       const currTime = Number(new Date(0, 0, 0, 0, min, sec));
       const newTime = new Date(currTime - 1000);
-      state.remaining = `${newTime.getMinutes()}:${newTime.getSeconds()}`;
+      const newMin = newTime.getMinutes();
+      let newSec = newTime.getSeconds();
+      if (newSec < 10) {
+        newSec = `0${newSec}`;
+      } else {
+        newSec = String(newSec);
+      }
+      state.remaining = `${newMin}:${newSec}`;
     }
   },
   extraReducers: {
