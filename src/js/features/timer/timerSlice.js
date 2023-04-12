@@ -31,6 +31,9 @@ export const timerSlice = createSlice({
       const min = state.remaining.split(':')[0];
       const newLength = Number(min) - 1;
       state.remaining = `${newLength}:00`;
+    },
+    'length/reset': state => {
+      state.remaining = '25:00';
     }
   }
 });
