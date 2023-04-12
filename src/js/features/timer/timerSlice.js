@@ -13,6 +13,18 @@ export const timerSlice = createSlice({
       const newTime = new Date(currTime - 1000);
       state.remaining = `${newTime.getMinutes()}:${newTime.getSeconds()}`;
     }
+  },
+  extraReducers: {
+    'length/sessionInc': state => {
+      const min = state.remaining.split(':')[0];
+      const newLength = Number(min) + 1;
+      state.remaining = `${newLength}:00`;
+    },
+    'length/sessionDec': state => {
+      const min = state.remaining.split(':')[0];
+      const newLength = Number(min) - 1;
+      state.remaining = `${newLength}:00`;
+    }
   }
 });
 
