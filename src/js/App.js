@@ -19,7 +19,7 @@ export const App = () => {
       <div id="app">
         <LengthControl name="break" value={length.brk} inc={breakInc} dec={breakDec} />
         <LengthControl name="session" value={length.session} inc={sessionInc} dec={sessionDec} />
-        <Timer />
+        <Timer reset={reset} />
       </div>
     </>
   )
