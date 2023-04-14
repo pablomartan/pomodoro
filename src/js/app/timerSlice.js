@@ -1,45 +1,68 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+/**
+ * @description: adds a zero to a number which has only one digit
+ * @param {Number} num: the number
+ * @returns {String}: a string with the 'padded' number
+ */
+const addZero = num => {
+  return num < 10 && num >= 0 ? `0${num}` : `${num}`;
+};
+
 export const timerSlice = createSlice({
   name: 'timer',
   initialState: {
     brk: 5,
     session: 25,
-    remaining: '25:00'
+    timerLabel: 'Session',
+    remaining: '25:00',
   },
   reducers: {
     breakInc: state => {
-      state.brk += 1;
+      if (state.brk < 60) {
+        state.brk += 1;
+      }
     },
     breakDec: state => {
-      state.brk -= 1;
+      if (state.brk > 1) {
+        state.brk -= 1;
+      }
     },
     sessionInc: state => {
-      state.session += 1;
+      if (state.session < 60) {
+        state.session += 1;
+      }
+      state.remaining = state.session < 10 ? `0${state.session}:00` : `${state.session}:00`;
     },
     sessionDec: state => {
-      state.session -= 1;
+      if (state.session > 1) {
+        state.session -= 1;
+      }
+      state.remaining = state.session < 10 ? `0${state.session}:00` : `${state.session}:00`;
     },
     reset: state => {
       state.brk = 5;
       state.session = 25;
+      state.timerLabel = 'Session';
       state.remaining = '25:00';
+      document.getElementById('beep').pause();
+      document.getElementById('beep').currentTime = 0;
     },
     countdown: state => {
-      const min = Number(state.remaining.split(':')[0]);
-      const sec = Number(state.remaining.split(':')[1]);
-      if (min > 0 || sec > 0) {
-        const currTime = Number(new Date(0, 0, 0, 0, min, sec));
-        const newTime = new Date(currTime - 1000);
-        const newMin = newTime.getMinutes();
-        let newSec = newTime.getSeconds();
-        if (newSec < 10) {
-          newSec = `0${newSec}`;
-        } else {
-          newSec = String(newSec);
-        }
+      const timeLeft = state.remaining.split(':');
+      const nextTime = Number(timeLeft[0]) * 60 + Number(timeLeft[1]) - 1;
+      const nextState =  addZero(Math.floor(nextTime / 60)) + ':' + addZero(nextTime % 60);
 
-        state.remaining = `${newMin}:${newSec}`;
+      if (nextTime >= 0) {
+        state.remaining = nextState;
+      } else {
+        document.getElementById('beep').play();
+        state.timerLabel = state.timerLabel == 'Break' ? 'Session' : 'Break';
+        if (state.timerLabel == 'Break') {
+          state.remaining = addZero(state.brk) + ':00';
+        } else {
+          state.remaining = addZero(state.session) + ':00';
+        }
       }
     }
   }
@@ -47,6 +70,6 @@ export const timerSlice = createSlice({
 
 export const stateTimer = state => state.timer;
 
-export const { countdown, breakInc, breakDec, sessionInc, sessionDec, reset} = timerSlice.actions;
+export const { countdown, breakInc, breakDec, sessionInc, sessionDec, reset } = timerSlice.actions;
 
 export default timerSlice.reducer;

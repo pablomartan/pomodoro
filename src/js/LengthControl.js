@@ -9,12 +9,12 @@ export const LengthControl = props => {
   const dispatch = useDispatch();
   
   return(
-    <div className="length-control" id={props.id}>
-      <h3 className="control-label text-capitalize" id={labelId}>{props.name} length</h3>
-      <div className="controls">
-        <button id={decrementId} onClick={() => dispatch(props.dec())}>↓</button>
-        <h4 className="control-value" id={lengthId}>{props.value}</h4>
-        <button id={incrementId} onClick={() => dispatch(props.inc())}>↑</button>
+    <div className="length-control col" id={props.id}>
+      <h3 className="text-capitalize text-center" id={labelId}>{props.name} length</h3>
+      <div className="row controls">
+        <button className="col btn btn-primary" id={decrementId} onClick={() => dispatch(props.dec())}>↓</button>
+        <h4 className="col text-center" id={lengthId}>{props.value}</h4>
+        <button className="col btn btn-primary" id={incrementId} onClick={() => dispatch(props.inc())}>↑</button>
       </div>
     </div>
   )
