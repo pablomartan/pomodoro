@@ -16,6 +16,7 @@ export const timerSlice = createSlice({
     session: 25,
     timerLabel: 'Session',
     remaining: '25:00',
+    intervalId: null
   },
   reducers: {
     breakInc: state => {
@@ -56,6 +57,7 @@ export const timerSlice = createSlice({
       if (nextTime >= 0) {
         state.remaining = nextState;
       } else {
+        clearInterval(state.intervalId);
         document.getElementById('beep').play();
         state.timerLabel = state.timerLabel == 'Break' ? 'Session' : 'Break';
         if (state.timerLabel == 'Break') {
@@ -64,12 +66,15 @@ export const timerSlice = createSlice({
           state.remaining = addZero(state.session) + ':00';
         }
       }
+    },
+    intervalToState: (state, action) => {
+      state.intervalId = action.payload;
     }
   }
 });
 
 export const stateTimer = state => state.timer;
 
-export const { countdown, breakInc, breakDec, sessionInc, sessionDec, reset } = timerSlice.actions;
+export const { countdown, breakInc, breakDec, sessionInc, sessionDec, reset, intervalToState } = timerSlice.actions;
 
 export default timerSlice.reducer;

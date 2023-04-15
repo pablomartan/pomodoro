@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { stateTimer, countdown } from './app/timerSlice';
+import { stateTimer, countdown, intervalToState } from './app/timerSlice';
 
 let timer; 
 
 const startStopDispatcher = dispatch => {
   if (!timer) {
     timer = setInterval(() => dispatch(countdown(timer)), 1000);
+    dispatch(intervalToState(timer));
   } else {
     clearInterval(timer);
     timer = null;
