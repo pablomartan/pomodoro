@@ -45,24 +45,8 @@ export const timerSlice = createSlice({
       document.getElementById('beep').currentTime = 0;
     },
     countdown: state => {
-      state.isSwitching = false;
-      const timeLeft = state.timeLeft.split(':');
-      const nextTime = Number(timeLeft[0]) * 60 + Number(timeLeft[1]) - 1;
-
-      if (nextTime >= 0) {
-        state.timeLeft = nextState;
-      } else {
-        clearInterval(state.intervalId);
-        document.getElementById('beep').play();
-        state.timerLabel = state.timerLabel == 'Break' ? 'Session' : 'Break';
-        state.isSwitching = true;
-        if (state.timerLabel == 'Break') {
-          state.timeLeft = state.breakLength * 60;
-        } else {
-          state.timeLeft = state.sessionLenght * 60;
-        }
-        state.isSwitching = false;
-      }
+      const nextState = state.timeLeft - 1;
+      state.timeLeft = nextState < 0 ? state.timeLeft : nextState;
     },
     intervalToState: (state, action) => {
       state.intervalId = action.payload;
