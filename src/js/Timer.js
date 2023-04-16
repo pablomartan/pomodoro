@@ -25,7 +25,7 @@ export const Timer = props => {
   return(
     <div id="timer" className="container col-5">
       <h3 className="text-center" id="timer-label">{state.timerLabel}</h3>
-      <h4 className="text-center" id="time-left">{state.remaining}</h4>
+      <h4 className="text-center" id="time-left">{props.timeLeft}</h4>
       <div className="row" id="timer-controls">
         <div className="col text-center btn btn-warning" id="start_stop" onClick={() => startStopDispatcher(state, dispatch)}>Start-Stop</div>
         <div className="col text-center btn btn-danger" id="reset" onClick={() => {

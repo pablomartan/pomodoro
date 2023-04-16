@@ -22,7 +22,7 @@ export const App = () => {
           <LengthControl name="break" value={length.breakLength} inc={breakInc} dec={breakDec} />
           <LengthControl name="session" value={length.sessionLenght} inc={sessionInc} dec={sessionDec} />
         </div>
-        <Timer reset={reset} />
+        <Timer reset={reset} timeLeft={state.timeLeft}/>
         <Audio id="beep"
           url="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav" />
       </div>
