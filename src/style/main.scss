@@ -1,0 +1,29 @@
+html, body {
+    min-height: 100vh;
+    height: 100%;
+    background: linen;
+}
+
+.my-buttons {
+    background-color: lightblue;
+
+    &:hover {
+        background-color: lightslategrey;
+    }
+}
+
+#start_stop {
+    background-color: wheat;
+
+    &:hover {
+        background-color: tan;
+    }
+}
+
+#reset {
+    background-color: lightcoral;
+
+    &:hover{
+        background-color: indianred;
+    }
+}
