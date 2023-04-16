@@ -38,7 +38,7 @@ export const timerSlice = createSlice({
       state.breakLength = 5;
       state.sessionLenght = 25;
       state.timerLabel = 'Session';
-      state.timeLeft = '25:00';
+      state.timeLeft = 25 * 60;
       state.intervalId = null;
       state.intervalId = 
       document.getElementById('beep').pause();
