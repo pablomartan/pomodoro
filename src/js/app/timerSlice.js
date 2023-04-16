@@ -1,14 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-/**
- * @description: adds a zero to a number which has only one digit
- * @param {Number} num: the number
- * @returns {String}: a string with the 'padded' number
- */
-const addZero = num => {
-  return num < 10 && num >= 0 ? `0${num}` : `${num}`;
-};
-
 export const timerSlice = createSlice({
   name: 'timer',
   initialState: {
