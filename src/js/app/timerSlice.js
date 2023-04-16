@@ -12,7 +12,7 @@ const addZero = num => {
 export const timerSlice = createSlice({
   name: 'timer',
   initialState: {
-    brk: 5,
+    breakLength: 5,
     session: 25,
     timerLabel: 'Session',
     remaining: '25:00',
@@ -21,13 +21,13 @@ export const timerSlice = createSlice({
   },
   reducers: {
     breakInc: state => {
-      if (state.brk < 60) {
-        state.brk += 1;
+      if (state.breakLength < 60) {
+        state.breakLength += 1;
       }
     },
     breakDec: state => {
-      if (state.brk > 1) {
-        state.brk -= 1;
+      if (state.breakLength > 1) {
+        state.breakLength -= 1;
       }
     },
     sessionInc: state => {
@@ -44,7 +44,7 @@ export const timerSlice = createSlice({
     },
     reset: state => {
       clearInterval(state.intervalId);
-      state.brk = 5;
+      state.breakLength = 5;
       state.session = 25;
       state.timerLabel = 'Session';
       state.remaining = '25:00';
@@ -67,7 +67,7 @@ export const timerSlice = createSlice({
         state.timerLabel = state.timerLabel == 'Break' ? 'Session' : 'Break';
         state.isSwitching = true;
         if (state.timerLabel == 'Break') {
-          state.remaining = addZero(state.brk) + ':00';
+          state.remaining = addZero(state.breakLength) + ':00';
         } else {
           state.remaining = addZero(state.session) + ':00';
         }

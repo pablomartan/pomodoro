@@ -19,7 +19,7 @@ export const App = () => {
     <>
       <div id="app" className="card p-5 justify-self-center col-7">
         <div className="row" id="length-control">
-          <LengthControl name="break" value={length.brk} inc={breakInc} dec={breakDec} />
+          <LengthControl name="break" value={length.breakLength} inc={breakInc} dec={breakDec} />
           <LengthControl name="session" value={length.session} inc={sessionInc} dec={sessionDec} />
         </div>
         <Timer reset={reset} />
