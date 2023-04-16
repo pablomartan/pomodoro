@@ -28,8 +28,8 @@ export const timerSlice = createSlice({
       state.timeLeft = state.sessionLenght * 60;
     },
     sessionDec: state => {
-      if (state.session > 1) {
-        state.session -= 1;
+      if (state.sessionLenght> 1) {
+        state.sessionLenght -= 1;
       }
       state.timeLeft = state.sessionLenght * 60;
     },
@@ -45,17 +45,22 @@ export const timerSlice = createSlice({
       document.getElementById('beep').currentTime = 0;
     },
     countdown: state => {
-      const nextState = state.timeLeft - 1;
-      state.timeLeft = nextState < 0 ? state.timeLeft : nextState;
+      state.timeLeft = state.timeLeft - 1;
     },
     intervalToState: (state, action) => {
+      clearInterval(state.intervalId);
       state.intervalId = action.payload;
+    },
+    switchMode: state => {
+      state.isSwitching = !state.isSwitching;
+      state.timerLabel = state.timerLabel == 'Session' ? 'Break' : 'Session';
+      state.timeLeft = state.timerLabel == 'Session' ? state.sessionLenght * 60 : state.breakLength * 60;
     }
   }
 });
 
 export const stateTimer = state => state.timer;
 
-export const { countdown, breakInc, breakDec, sessionInc, sessionDec, reset, intervalToState } = timerSlice.actions;
+export const { countdown, breakInc, breakDec, sessionInc, sessionDec, reset, intervalToState, switchMode } = timerSlice.actions;
 
 export default timerSlice.reducer;
