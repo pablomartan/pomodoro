@@ -13,7 +13,7 @@ export const timerSlice = createSlice({
   name: 'timer',
   initialState: {
     breakLength: 5,
-    session: 25,
+    sessionLenght: 25,
     timerLabel: 'Session',
     remaining: '25:00',
     intervalId: null,
@@ -31,21 +31,21 @@ export const timerSlice = createSlice({
       }
     },
     sessionInc: state => {
-      if (state.session < 60) {
-        state.session += 1;
+      if (state.sessionLenght < 60) {
+        state.sessionLenght += 1;
       }
-      state.remaining = state.session < 10 ? `0${state.session}:00` : `${state.session}:00`;
+      state.remaining = state.sessionLenght < 10 ? `0${state.sessionLenght}:00` : `${state.sessionLenght}:00`;
     },
     sessionDec: state => {
       if (state.session > 1) {
         state.session -= 1;
       }
-      state.remaining = state.session < 10 ? `0${state.session}:00` : `${state.session}:00`;
+      state.remaining = state.sessionLenght < 10 ? `0${state.sessionLenght}:00` : `${state.sessionLenght}:00`;
     },
     reset: state => {
       clearInterval(state.intervalId);
       state.breakLength = 5;
-      state.session = 25;
+      state.sessionLenght = 25;
       state.timerLabel = 'Session';
       state.remaining = '25:00';
       state.intervalId = null;
@@ -69,7 +69,7 @@ export const timerSlice = createSlice({
         if (state.timerLabel == 'Break') {
           state.remaining = addZero(state.breakLength) + ':00';
         } else {
-          state.remaining = addZero(state.session) + ':00';
+          state.remaining = addZero(state.sessionLenght) + ':00';
         }
         state.isSwitching = false;
       }
