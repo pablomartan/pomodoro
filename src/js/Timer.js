@@ -10,7 +10,7 @@ export const Timer = props => {
     <div id="timer" className="container col mt-4">
       <h3 className="text-center mb-3" id="timer-label">{state.timerLabel}</h3>
       <h4 className="text-center mb-3" id="time-left">{props.timeLeft}</h4>
-      <div className="row justify-content-center" id="timer-controls">
+      <div className="row" id="timer-controls">
         <div className="col-3 text-center btn" id="start_stop" onClick={() => {
           props.startStopHandler(state, dispatch)
         }}>Start-Stop</div>
