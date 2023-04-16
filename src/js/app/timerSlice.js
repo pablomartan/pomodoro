@@ -16,7 +16,8 @@ export const timerSlice = createSlice({
     session: 25,
     timerLabel: 'Session',
     remaining: '25:00',
-    intervalId: null
+    intervalId: null,
+    isSwitching: false,
   },
   reducers: {
     breakInc: state => {
@@ -42,14 +43,18 @@ export const timerSlice = createSlice({
       state.remaining = state.session < 10 ? `0${state.session}:00` : `${state.session}:00`;
     },
     reset: state => {
+      clearInterval(state.intervalId);
       state.brk = 5;
       state.session = 25;
       state.timerLabel = 'Session';
       state.remaining = '25:00';
+      state.intervalId = null;
+      state.intervalId = 
       document.getElementById('beep').pause();
       document.getElementById('beep').currentTime = 0;
     },
     countdown: state => {
+      state.isSwitching = false;
       const timeLeft = state.remaining.split(':');
       const nextTime = Number(timeLeft[0]) * 60 + Number(timeLeft[1]) - 1;
       const nextState =  addZero(Math.floor(nextTime / 60)) + ':' + addZero(nextTime % 60);
@@ -60,11 +65,13 @@ export const timerSlice = createSlice({
         clearInterval(state.intervalId);
         document.getElementById('beep').play();
         state.timerLabel = state.timerLabel == 'Break' ? 'Session' : 'Break';
+        state.isSwitching = true;
         if (state.timerLabel == 'Break') {
           state.remaining = addZero(state.brk) + ':00';
         } else {
           state.remaining = addZero(state.session) + ':00';
         }
+        state.isSwitching = false;
       }
     },
     intervalToState: (state, action) => {

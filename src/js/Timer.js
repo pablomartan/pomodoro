@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { stateTimer, countdown, intervalToState } from './app/timerSlice';
 
@@ -14,6 +14,13 @@ const startStopDispatcher = (state, dispatch) => {
 export const Timer = props => {
   const dispatch = useDispatch();
   const state = useSelector(stateTimer);
+
+  useEffect(() => {
+    if (state.isSwitching) {
+      clearInterval(state.intervalId);
+      dispatch(intervalToState(setInterval(() => dispatch(countdown()), 1000)));
+    }
+  });
 
   return(
     <div id="timer" className="container col-5">
