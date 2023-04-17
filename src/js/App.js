@@ -57,7 +57,8 @@ export const App = () => {
 
   return(
     <>
-      <div id="app" className="card p-5 justify-self-center col-8 col-md-6 col-lg-5">
+      <div id="app" className="card p-5 justify-self-center col-10 col-sm-8 col-md-6 col-lg-4">
+        <h2 className="text-center">Work Timer</h2>
         <div className="row" id="length-control">
           <LengthControl name="break" value={state.breakLength} inc={breakInc} dec={breakDec} />
           <LengthControl name="session" value={state.sessionLenght} inc={sessionInc} dec={sessionDec} />
