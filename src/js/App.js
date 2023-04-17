@@ -57,13 +57,13 @@ export const App = () => {
 
   return(
     <>
-      <div id="app" className="card p-5 justify-self-center col-10 col-sm-8 col-md-6 col-lg-4">
+      <div id="app" className="card shadow p-5 justify-self-center col-10 col-sm-8 col-md-6 col-lg-4">
         <h2 className="text-center">Work Timer</h2>
-        <div className="row" id="length-control">
+        <Timer reset={reset} timeLeft={secondsToString(state.timeLeft)} startStopHandler={startStopHandler}/>
+        <div className="row justify-content-between" id="length-control">
           <LengthControl name="break" value={state.breakLength} inc={breakInc} dec={breakDec} />
           <LengthControl name="session" value={state.sessionLenght} inc={sessionInc} dec={sessionDec} />
         </div>
-        <Timer reset={reset} timeLeft={secondsToString(state.timeLeft)} startStopHandler={startStopHandler}/>
         <Audio id="beep"
           url="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav" />
       </div>

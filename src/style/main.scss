@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap');
+
 html, body {
     height: 100%;
     background: linen;
+    font-family: 'Fira Sans', sans-serif;
 }
 
 @media (max-width: 440px) {
@@ -14,7 +17,7 @@ html, body {
     background-color: lightblue;
 
     &:active, &:hover {
-        background-color: lightslategrey;
+        background-color: powderblue;
     }
 }
 
@@ -32,4 +35,8 @@ html, body {
     &:active, &:hover {
         background-color: indianred;
     }
+}
+
+#time-left {
+  font-size: 40px;
 }
