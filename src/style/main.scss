@@ -13,7 +13,7 @@ html, body {
 .my-buttons {
     background-color: lightblue;
 
-    &:hover {
+    &:active, &:hover {
         background-color: lightslategrey;
     }
 }
@@ -21,7 +21,7 @@ html, body {
 #start_stop {
     background-color: wheat;
 
-    &:hover {
+    &:active, &:hover {
         background-color: tan;
     }
 }
@@ -29,7 +29,7 @@ html, body {
 #reset {
     background-color: lightcoral;
 
-    &:hover{
+    &:active, &:hover {
         background-color: indianred;
     }
 }

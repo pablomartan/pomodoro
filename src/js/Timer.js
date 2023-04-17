@@ -11,14 +11,19 @@ export const Timer = props => {
       <h3 className="text-center mb-3" id="timer-label">{state.timerLabel}</h3>
       <h4 className="text-center mb-3" id="time-left">{props.timeLeft}</h4>
       <div className="row justify-content-center" id="timer-controls">
-        <div className="col col-md-3 text-center btn m-1" id="start_stop" onClick={() => {
-          props.startStopHandler(state, dispatch)
-        }}>Start-Stop</div>
-        <div className="col col-md-3 text-center btn m-1" id="reset" onClick={() => {
-          dispatch(props.reset());
-        }}>
-          Reset
-        </div>
+        <button
+          id="start_stop"
+          className="col col-md-3 text-center btn m-1"
+          onClick={() => props.startStopHandler(state, dispatch)}>
+            <i className="fa-solid fa-play"></i>
+            <i className="fa-solid fa-pause"></i>
+        </button>
+        <button
+          id="reset" 
+          className="col col-md-3 text-center btn m-1"
+          onClick={() => dispatch(props.reset())}>
+            <i className="fa-solid fa-repeat"></i>
+        </button>
       </div>
     </div>
   )
