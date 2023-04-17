@@ -9,7 +9,7 @@ export const Timer = props => {
   return(
     <div id="timer" className="container col mb-4">
       <h4 className="text-center mb-3" id="timer-label">{state.timerLabel}</h4>
-      <h3 className="text-center m-5" id="time-left">{props.timeLeft}</h3>
+      <h3 className="text-center m-4" id="time-left">{props.timeLeft}</h3>
       <div className="row justify-content-center" id="timer-controls">
         <button
           id="start_stop"
