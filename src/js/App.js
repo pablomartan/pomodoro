@@ -57,7 +57,7 @@ export const App = () => {
 
   return(
     <>
-      <div id="app" className="card p-5 justify-self-center col-7">
+      <div id="app" className="card p-5 justify-self-center col-8 col-md-6 col-lg-5">
         <div className="row" id="length-control">
           <LengthControl name="break" value={state.breakLength} inc={breakInc} dec={breakDec} />
           <LengthControl name="session" value={state.sessionLenght} inc={sessionInc} dec={sessionDec} />

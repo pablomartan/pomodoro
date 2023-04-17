@@ -9,7 +9,7 @@ export const LengthControl = props => {
   const dispatch = useDispatch();
   
   return(
-    <div className="length-control col" id={props.id}>
+    <div className="length-control col p-3" id={props.id}>
       <h4 className="text-capitalize text-center" id={labelId}>{props.name} length</h4>
       <div className="row">
         <button className="col btn my-buttons" id={decrementId} onClick={() => dispatch(props.dec())}>↓</button>
